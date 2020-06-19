@@ -78,7 +78,6 @@
 				border-radius: 32px;
 				-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
 				box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
-				
 			}
 			
 			.login-button {
@@ -103,32 +102,86 @@
 					box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
 				}
 			}
-			/*
-			.login-button:before {
-			    top: 28px;
-			    content: '';
-			    left: -4px;
-			    width: 4px;
-			    height: 10px;
-			    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
-			    box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
-			}*/
+			
+			.warn {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -80%);
+			}
+			
+			.hid {
+				display: false;
+			}
+			
+			.show {
+				display: true;
+			}
+			
+			.warning {
+				display: flex;
+				justify-content: inherit;
+				align-content: center;
+				align-items: center;
+				flex-flow: column;
+				width: 245px;
+				background-color: rgba(0, 0, 0, 0.1);
+				color: rgba(255, 255, 255, 0.4);
+			}
+			
+			.warning>div:nth-child(1),
+			.warning>div:nth-child(2) {
+				margin-bottom: 20px;
+			}
+			
+			/*.warning>button {
+				background-color: rgba(0, 0, 0, 0.8);
+				border: none;
+				border-radius: 5px;
+			}
+			*/
+			.warning>div:nth-child(1) {
+				font-size: 20px;
+				font-weight: bold;
+			}
 		</style>
 	</head>
 
 	<body>
 
 		<div id="app">
-			
-		<!--登录框-->
+
+			<!--登录框-->
 			<div class="LoginWindow">
 				<div>
 					<div class="login">
-						<p><input type="text" name="id" id="id" placeholder="用户名" value=""></p>
+						<p><input type="text" name="id" id="name" placeholder="用户名" value=""></p>
 						<p><input type="password" name="password" id="password" placeholder="密码" value=""></p>
 						<p class="login-submit">
-							<button type="submit" class="login-button" id="submit">登录</button>
+							<button type="submit" class="login-button" data-toggle="modal" data-target=".bs-example-modal-sm" id="submit" onclick="login()">登录</button>
 						</p>
+					</div>
+				</div>
+			</div>
+
+			<!--警告框-->
+			<!--<div >-->
+			<!--<div class="warn hid" class="modal-sm fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+					<div class="modal-dialog modal-sm" role="document">
+						<div class="modal-content warning">
+							<div>OMG!</div>
+							<div>用户名或密码不能为空!!!</div>
+							<button class="sure">确定</button>
+						</div>
+					</div>
+				</div>-->
+			<!--</div>-->
+
+			<div class="modal warn fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content warning">
+						<div>OMG!</div>
+						<div>用户名或密码不能为空!!!</div>
 					</div>
 				</div>
 			</div>
@@ -140,9 +193,26 @@
 				<shooting-star />
 			</svg>
 		</div>
+		<script type="text/javascript">
+			function login() {
+				var username = document.getElementById("name").value;
+				var passwords = document.getElementById("password").value;
+				console.log(username, passwords);
+				if(username != '' && passwords != '') {
+					window.location.href = "./home.html";
+				} else {
+					console.log(123)
+					//					document.getElementsByClassName('LoginWindow')[0].classList.remove('class','hid');
+//					document.getElementsByClassName('warn')[0].classList.remove('class', 'hid');
+				}
 
+			}
+		</script>
 		<script src='js/vue.min.js'></script>
 		<script src="js/script.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
 	</body>
 
